@@ -21,7 +21,7 @@ pipeline {
                 script {
                     sh '''
                         echo 'Build Docker Image'
-                        docker build -t himavarshini123/cicd-e2e:${BUILD_NUMBER} .
+                        ddocker build -f python-jenkins-argocd-k8s/Dockerfile -t himavarshini123/cicd-e2e:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -69,7 +69,7 @@ pipeline {
                             cat deploy.yaml
 
                             git config user.email "jenkins@pipeline.com"
-                            git config user.name "varshini357"
+                            git config user.name ""
 
                             git add deploy.yaml
                             git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
