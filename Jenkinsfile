@@ -64,14 +64,14 @@ pipeline {
                         passwordVariable: 'GIT_PASSWORD'
                     )]) {
                         sh '''
-                            cat python-jenkins-argocd-k8s/deploy/deploy.yaml
-                            sed -i "s/32/${BUILD_NUMBER}/g" python-jenkins-argocd-k8s/deploy/deploy.yaml
-                            cat python-jenkins-argocd-k8s/deploy/deploy.yaml
+                            cat deploy/deploy.yaml
+                            sed -i "s/32/${BUILD_NUMBER}/g" deploy/deploy.yaml
+                            cat deploy/deploy.yaml
 
                             git config user.email "jenkins@pipeline.com"
                             git config user.name ""
 
-                            git add python-jenkins-argocd-k8s/deploy/deploy.yaml
+                            git add deploy/deploy.yaml
                             git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                             git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/varshini357/cicd-end-to-end.git HEAD:main
                         '''
