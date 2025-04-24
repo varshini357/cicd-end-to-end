@@ -67,6 +67,9 @@ pipeline {
                             cat deploy/deploy.yaml
                             sed -i "s/32/${BUILD_NUMBER}/g" deploy/deploy.yaml
                             cat deploy/deploy.yaml
+                            
+                            git config user.name "varshini357" 
+                            git config user.email "varshini8913@gmail.com"
 
                             git add deploy/deploy.yaml
                             git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
