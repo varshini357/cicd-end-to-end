@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: todo-app
+  name: cicd-e2e
 spec:
   containers:
-  - name: todo-app
-    image: himavarshini123/todoapp:10
+  - name: cicd-e2e
+    image: himavarshini123/cicd-e2e:10
     ports:
     - containerPort: 8000
