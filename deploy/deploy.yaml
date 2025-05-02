@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: cicd-e2e
-        image: himavarshini123/cicd-e2e:${BUILD_NUMBER}
+        image: himavarshini123/cicd-e2e:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
