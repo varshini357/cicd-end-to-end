@@ -59,8 +59,10 @@ pipeline {
                             echo 'Updating deployment.yaml with new image tag'
 
                             sed -i "s|PLACEHOLDER_TAG|${BUILD_NUMBER}|" deploy/deploy.yaml
+                            sed -i "s|PLACEHOLDER_TAG|${BUILD_NUMBER}|" pod/pod.yaml
                             
                             cat deploy/deploy.yaml
+                            cat pod/pod.yaml
                             
                             git config user.name "varshini357" 
                             git config user.email "varshini8913@gmail.com"
