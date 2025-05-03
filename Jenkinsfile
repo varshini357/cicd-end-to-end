@@ -21,7 +21,7 @@ pipeline {
                 script {
                     sh '''
                         echo 'Build Docker Image'
-                        docker build -t himavarshini123/cicd-e2e:${BUILD_NUMBER}
+                        docker build -t himavarshini123/cicd-e2e:${BUILD_NUMBER} .
                     '''
                 }
             }
