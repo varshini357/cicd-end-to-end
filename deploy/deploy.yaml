@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: cicd-e2e
-        image: himavarshini123/cicd-e2e:4
+        image: himavarshini123/cicd-e2e:PLACEHOLDER_TAG
         ports:
         - containerPort: 8000
