@@ -47,14 +47,6 @@ pipeline {
             }
         }
         
-        stage('Checkout K8S manifest SCM') {
-            steps {
-                git credentialsId: 'github-creds', 
-                    url: 'https://github.com/varshini357/cicd-end-to-end.git',
-                    branch: 'main'
-            }
-        }
-        
         stage('Update K8S manifest & push to Repo') {
             steps {
                 script {
@@ -64,15 +56,17 @@ pipeline {
                         passwordVariable: 'GIT_PASSWORD'
                     )]) {
                         sh '''
-                            cat deploy/deploy.yaml
-                            sed -i "s/32/${BUILD_NUMBER}/g" deploy/deploy.yaml
+                            echo 'Updating deployment.yaml with new image tag'
+
+                            sed -i "s|image: himavarshini123/cicd-e2e:.*|image: himavarshini123/cicd-e2e:${BUILD_NUMBER}|" deploy/deploy.yaml
+                            
                             cat deploy/deploy.yaml
                             
                             git config user.name "varshini357" 
                             git config user.email "varshini8913@gmail.com"
 
                             git add deploy/deploy.yaml
-                            git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
+                            git commit -m "Updated image tag to ${BUILD_NUMBER} | Jenkins Pipeline" || echo "No changes to commit"
                             git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/varshini357/cicd-end-to-end.git HEAD:main
                         '''
                     }
