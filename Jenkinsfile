@@ -59,15 +59,15 @@ pipeline {
                             echo 'Updating deployment.yaml with new image tag'
 
                             sed -i "s|PLACEHOLDER_TAG|${BUILD_NUMBER}|" deploy/deploy.yaml
-                            sed -i "s|PLACEHOLDER_TAG|${BUILD_NUMBER}|" pod/pod.yaml
+                            sed -i "s|PLACEHOLDER_TAG|${BUILD_NUMBER}|" deploy/pod.yaml
                             
                             cat deploy/deploy.yaml
-                            cat pod/pod.yaml
+                            cat deploy/pod.yaml
                             
                             git config user.name "varshini357" 
                             git config user.email "varshini8913@gmail.com"
 
-                            git add deploy/deploy.yaml
+                            git add deploy/deploy.yaml deploy/pod.yaml
                             git commit -m "Updated image tag to ${BUILD_NUMBER} | Jenkins Pipeline" || echo "No changes to commit"
                             git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/varshini357/cicd-end-to-end.git HEAD:main
                         '''
